@@ -7,6 +7,8 @@ export PATH="$PATH:$NODEBIN"
 
 echo "Building..."
 
+mkdir -p ~/.config
+
 mix deps.get
 mix compile
 (cd assets && npm install)
