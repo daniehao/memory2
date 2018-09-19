@@ -1,0 +1,9 @@
+/* This file is for your main application css. */
+
+@import "~milligram/dist/milligram";
+
+.column > p {
+    padding-top: 10ex;
+    text-align: center;
+}
+
