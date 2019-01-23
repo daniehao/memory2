@@ -9,11 +9,10 @@ _build/prod/rel/memory/bin/memory stop || true
 
 echo "Starting app..."
 
-# TODO: You want start.
-
+# Start to run in background from shell.
 #_build/prod/rel/memory/bin/memory start
 
-# Foreground for testing:
+# Foreground for testing and for systemd
 _build/prod/rel/memory/bin/memory foreground
 
 # TODO: Add a cron rule or systemd service file
