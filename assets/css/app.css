@@ -1,9 +1,43 @@
 /* This file is for your main application css. */
 
 @import "~milligram/dist/milligram";
-
+/*
 .column > p {
-    padding-top: 10ex;
-    text-align: center;
+   padding-top: 10ex;
+   text-align: center;
+}*/
+
+
+table,tbody {
+    border-collapse: collapse;
+    width: 50%;
+
 }
 
+table, tr, td {
+    border: 3px solid black;
+}
+
+
+td{
+   padding-top: 10ex; 
+    width: 25%
+}
+
+p{
+   text-align: center;
+   font-size: 20px;
+}
+
+
+.matched{
+   background-color: palevioletred;
+}
+
+.notmatch{
+   background-color: darkorange;
+}
+
+.clicked{
+   background-color: white;
+}

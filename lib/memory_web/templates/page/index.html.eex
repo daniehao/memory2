@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>memory</title>
+<script>
+  window.gameName = "Memory";
+</script>
+</head>
+<body>
+
+<h1>Memory Game</h1>
+
+
 <div id="root">
-  React app loading...
+  React app loading...  
 </div>
+</body>
+</html>
