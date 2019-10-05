@@ -15,8 +15,24 @@ class Starter extends React.Component {
     this.state = { click_num: 0 };
     this.channel
         .join()
-        .receive("ok", ()  => {console.log("channel connected");})
+        .receive("ok", this.initGame.bind(this))
         .receive("error", resp => {console.log("Unable to join", resp); });
+  }
+
+  initGame(pros){
+    this.setState({click_num: pros.click});
+    let matched_id = pros.matched_id;
+    let shown_id = pros.shown_id;
+    var i;
+    for (i = 0; i < matched_id.length; i++) {
+      console.log("matched", matched_id[i]);
+      document.getElementById(matched_id[i]).className = "matched";
+    }
+    for (i = 0; i < shown_id.length; i++){
+      document.getElementById(shown_id[i]).className = "clicked";
+      this.getChar(shown_id[i]);
+    }
+    console.log("game connected");
   }
 
   showChar(target){
@@ -35,6 +51,8 @@ class Starter extends React.Component {
       click2.className = "matched";
       click1.children[0].innerHTML = "";
       click2.children[0].innerHTML = "";
+      this.channel.push("match", {matched_id: [click1.id, click2.id]})
+        .receive("ok", () => {console.log("matched_id updated")})
       if (document.getElementsByClassName("notmatch").length === 0){
         alert("Congratulations!! You have passed the game!! Press the button to play again.");
       }
@@ -44,6 +62,8 @@ class Starter extends React.Component {
       click2.className = "notmatch";
       click1.children[0].innerHTML = "";
       click2.children[0].innerHTML = "";
+      this.channel.push("notmatch", {})
+        .receive("ok", () => {console.log("shown_id updated")})
     }
     TO_State = false;
   }
@@ -54,6 +74,9 @@ class Starter extends React.Component {
       // click number plus 1
       let count = this.state.click_num + 1;
       this.setState({click_num: count});
+      let id = ev.target.id;
+      this.channel.push("click", {id: id, click: count})
+        .receive("ok", () => {console.log("updated")})
       if (document.getElementsByClassName("clicked").length === 0){
         this.showChar(ev.target);
       }

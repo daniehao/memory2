@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>memory</title>
-<script>
-  window.gameName = "Memory";
-</script>
+<title>games</title>
 </head>
 <body>
-
-<h1>Memory Game</h1>
-
-
-<div id="root">
-  React app loading...  
+<div class= "row">
+  <div class = "column">
+    <%= form_for @conn,"/game", fn f -> %>
+      <p>Enter a Game Name: <%= text_input f, :x %></p>
+      <p><%= submit "Enter" %></p>
+    <% end %>
+ 
+    <ul> 
+      <li> memory </li>
+      <li> hangman </li>
+    </ul>
+  </div>
 </div>
 </body>
 </html>
